@@ -10,7 +10,7 @@
 <section layout:fragment="custom-content">
     <p>New Customer Registration form</p>
 
-    <form th:object="${customer}" method="post" >
+    <form  th:action="@{/new}" th:object="${customer}" method="post" >
 
           <label>Customer Number</label>
          <input th:field="*{customerNumber}" type="text" class="form-control" >
