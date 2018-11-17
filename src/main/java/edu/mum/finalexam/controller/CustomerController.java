@@ -10,7 +10,7 @@ public class CustomerController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getCustomerList() {
-
+        return "index";
     }
 
 
