@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.Collator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -18,7 +20,22 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+        return customerRepository.findAll().stream().sorted().collect(Collectors.toList());
     }
+
+    @Override
+    public Customer createCustomer(Customer customer) throws Exception {
+        Customer customerEntity = customerRepository.findByCustomerNumber(customer.getCustomerNumber());
+        if(customerEntity != null) {
+            throw new Exception("Customer already registered.");
+        }
+        return customerRepository.save(customer);
+    }
+
+    @Override
+    public List<Customer> getPrimeCustomers() {
+        return customerRepository.findByIsPrime(true).stream().sorted().collect(Collectors.toList());
+    }
+
 
 }

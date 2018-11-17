@@ -8,4 +8,8 @@ public interface ICustomerService {
 
     List<Customer> getCustomers();
 
+    Customer createCustomer(Customer customer) throws Exception;
+
+    List<Customer> getPrimeCustomers();
+
 }

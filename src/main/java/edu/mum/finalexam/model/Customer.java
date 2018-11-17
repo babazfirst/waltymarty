@@ -1,9 +1,6 @@
 package edu.mum.finalexam.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Customer {
@@ -14,6 +11,10 @@ public class Customer {
 
     private String name;
     private String customerNumber;
+    private boolean isPrime;
+
+    @OneToOne
+    private Contact contact;
 
     public long getId() {
         return id;
@@ -21,6 +22,14 @@ public class Customer {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean isPrime() {
+        return isPrime;
+    }
+
+    public void setPrime(boolean prime) {
+        isPrime = prime;
     }
 
     public String getName() {
@@ -33,6 +42,14 @@ public class Customer {
 
     public String getCustomerNumber() {
         return customerNumber;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public void setCustomerNumber(String customerNumber) {
